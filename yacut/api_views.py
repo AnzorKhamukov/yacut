@@ -31,7 +31,7 @@ def add_url_map():
     elif not is_short_id_unique(custom_id):
         raise InvalidAPIUsage(
             'Предложенный вариант короткой ссылки уже существует.'
-            )
+        )
     elif (not re.match(r'^[a-zA-Z0-9]{1,16}$', custom_id) or
           len(custom_id) < 1 or len(custom_id) > 16):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
