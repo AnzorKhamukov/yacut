@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import DataRequired, Length, Optional, URL, Regexp
 
+from settings import SHORT_LEN, REGULAR
+
 
 class URLMapForm(FlaskForm):
     original_link = URLField(
@@ -12,9 +14,9 @@ class URLMapForm(FlaskForm):
     custom_id = StringField(
         'Ваш вариант короткой ссылки',
         validators=[
-            Length(1, 16),
+            Length(max=SHORT_LEN),
             Optional(),
-            Regexp(r'^[a-zA-Z0-9]+$',
+            Regexp(REGULAR,
                    message='Используйте буквы латинского алфавита и цифры')]
     )
     submit = SubmitField('Создать')

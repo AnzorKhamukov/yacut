@@ -1,25 +1,9 @@
-import random
-import string
-
 from flask import flash, redirect, render_template, url_for
 
 from . import app, db
 from .models import URLMap
 from .forms import URLMapForm
-
-
-def is_short_id_unique(short_id):
-    if URLMap.query.filter_by(short=short_id).first():
-        return False
-    return True
-
-
-def get_unique_short_id():
-    chars = string.ascii_letters + string.digits
-    while True:
-        short_id = ''.join(random.choice(chars) for _ in range(6))
-        if is_short_id_unique(short_id):
-            return short_id
+from .utils import is_short_id_unique, get_unique_short_id
 
 
 @app.route('/', methods=['GET', 'POST'])
